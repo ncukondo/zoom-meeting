@@ -1,0 +1,15 @@
+{
+  "editor.formatOnSave": true,
+  "deno.codeLens.implementations": true,
+  "deno.codeLens.references": true,
+  "deno.codeLens.referencesAllFunctions": true,
+  "deno.codeLens.test": true,
+  "deno.enable": true,
+  "deno.unstable": true,
+  "editor.tabSize": 2,
+  "workbench.colorCustomizations": {
+    "editorInlayHint.foreground": "#aeaeb0",
+    "editorInlayHint.background": "#4e4e4e00",
+  },
+  "editor.inlayHints.fontSize": 12
+}

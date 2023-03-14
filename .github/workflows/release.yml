@@ -1,0 +1,42 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    env:
+      CLASPRC_ACCESS_TOKEN: ${{ secrets.CLASPRC_ACCESS_TOKEN }}
+      CLASPRC_CLIENT_ID: ${{ secrets.CLASPRC_CLIENT_ID }}
+      CLASPRC_CLIENT_SECRET: ${{ secrets.CLASPRC_CLIENT_SECRET }}
+      CLASPRC_EXPIRY_DATE: ${{ secrets.CLASPRC_EXPIRY_DATE }}
+      CLASPRC_ID_TOKEN: ${{ secrets.CLASPRC_ID_TOKEN }}
+      CLASPRC_REFRESH_TOKEN: ${{ secrets.CLASPRC_REFRESH_TOKEN }}
+      SCRIPT_ID: ${{ secrets.SCRIPT_ID }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: denoland/setup-deno@v1
+        with:
+          deno-version: v1.x
+      
+      - name: build
+        run: deno task build
+
+      - name: prepare clasp
+        run: deno task make-clasp-files
+
+      - name: Get version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+
+      - name: Upload files
+        run: deno run -A npm:@google/clasp push --force
+
+      - name: Add version
+        run: deno run -A npm:@google/clasp version ${{ steps.get_version.outputs.VERSION }}

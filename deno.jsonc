@@ -1,0 +1,12 @@
+{
+  "tasks": {
+    "make-clasp-files": "deno run --allow-read --allow-sys --allow-write --allow-env --allow-net ./bin/makeClaspFiles.ts",
+    "main": "deno run -A ./src/main.ts",
+    "build": "deno run --allow-read --allow-sys --allow-write --allow-env --allow-run --allow-net ./bin/build.ts",
+    "version": "deno run --allow-read --allow-sys --allow-write --allow-env --allow-run --allow-net ./bin/version.ts",
+    "deploy": "deno task build && deno task version && deno task make-clasp-files  &&  deno run -A npm:@google/clasp push --force"
+  },
+  "imports": {
+    "deno/asserts": "https://deno.land/std@0.65.0/testing/asserts.ts"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@ncukondo/zoom-meeting",
+  "version": "0.0.9",
+  "author": "Takeshi Kondo",
+  "license": "MIT",
+  "homepage": "https://github.com/ncukondo/zoom-controller",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "google-apps-script": "https://script.google.com/home/projects/1Cch0AQiiuxp4ZYfeF70rFcnSMZCMroGUpeW6ILiiK9jFlGGnIa2r07IV/edit"
+}
